@@ -2,8 +2,10 @@
 
 ## Table of Contents
 
-- What is SQL?
+- What is NoSQL?
 - NoSQL vs SQL
+- Terminology
+- Installasi MongoDB
 - MongoDB CRUD operation using mongosh
 - Create simple app using MongoDB
 
