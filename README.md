@@ -19,4 +19,4 @@
 - [crud operation](https://docs.mongodb.com/manual/crud/)
 - [terminology](https://docs.mongodb.com/manual/reference/sql-comparison/)
 - [mongo driver](https://www.mongodb.com/docs/drivers/)
-- [challenge](https://docs.google.com/document/d/1beJXG8ObzkP1t20rAOF2avcPj2U7fyLwIv_BoDfGZ24/edit)
+- [challenge](https://docs.google.com/document/d/1kU-vUuol2WvZiXOgHitSK0Il2T7fUnhx/edit)
