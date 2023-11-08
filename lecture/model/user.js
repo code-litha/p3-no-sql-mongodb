@@ -1,32 +1,31 @@
 const { ObjectId } = require("mongodb");
-const { getDB } = require("../config/mongoConnection");
+const { getDatabase } = require("../config/mongoConnection");
 
 class User {
-  static userCollection() {
-    return getDB().collection("users");
+  static collection() {
+    const database = getDatabase();
+    const usersCollection = database.collection("users");
+
+    return usersCollection;
   }
 
   static async findAll() {
-    const users = await this.userCollection().find().toArray();
-
+    const users = await this.collection().find().toArray();
     return users;
   }
 
-  static async findOne(id) {
-    const user = await this.userCollection().findOne({
+  static async findById(id) {
+    const user = await this.collection().findOne({
       _id: new ObjectId(id),
     });
 
     return user;
   }
 
-  static async insertOne(payload) {
-    const user = await this.userCollection().insertOne(payload);
+  static async create(payload) {
+    const user = await this.collection().insertOne(payload);
 
-    const newUser = await this.userCollection().findOne({
-      _id: new ObjectId(user.insertedId),
-    });
-    return newUser;
+    return user;
   }
 }
 

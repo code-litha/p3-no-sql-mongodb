@@ -1,5 +1,5 @@
 const { ObjectId } = require("mongodb");
-const { getDB } = require("../config/mongoConnection");
+const { getDatabase } = require("../config/mongoConnection");
 const User = require("../model/user");
 
 module.exports = {
@@ -15,22 +15,19 @@ module.exports = {
   findOneUser: async (req, res, next) => {
     try {
       const { id } = req.params;
-      const user = await User.findOne(id);
+      const user = await User.findById(id);
 
       res.status(200).json({ message: `Find One User with id ${id}`, user });
     } catch (error) {
-      console.log(error);
       res.status(500).json({ message: "Internal Server Error" });
     }
   },
   createUser: async (req, res, next) => {
     try {
       const { name, gender } = req.body;
-      const newUser = await User.insertOne({
-        name,
-        gender,
-      });
-      res.status(201).json({ user: newUser });
+      const user = await User.create({ name, gender });
+
+      res.status(201).json({ message: `Successfully create new user`, user });
     } catch (error) {
       res.status(500).json({ message: "Internal Server Error" });
     }

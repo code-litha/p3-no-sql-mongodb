@@ -1,29 +1,27 @@
-const { MongoClient } = require("mongodb");
+const { MongoClient, ObjectId } = require("mongodb");
 
 // Replace the uri string with your connection string.
 const uri = "mongodb://127.0.0.1:27017";
 
 const client = new MongoClient(uri);
 
-async function mongoConnection() {
+async function run() {
   try {
-    await client.connect();
-    console.log("Connected successfully to server");
-    const database = client.db("db_bsd_04");
-    const userCollection = database.collection("users");
+    const database = client.db("db_bsd_07");
+    const usersCollection = database.collection("users");
 
-    const users = await userCollection.find().toArray();
+    // const users = await usersCollection.find().toArray();
 
-    return users;
-    // const user = await userCollection.findOne();
+    // console.log(users);
+    const user = await usersCollection.findOne({
+      // _id: "654b2b7c51de02030fa9be68",
+      _id: new ObjectId("654b2b7c51de02030fa9be68"),
+    });
 
-    // return user;
-  } catch (error) {
+    console.log(user);
+  } finally {
     // Ensures that the client will close when you finish/error
     await client.close();
   }
 }
-
-mongoConnection().then((data) => {
-  console.log(data);
-});
+run();
